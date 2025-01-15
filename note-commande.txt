@@ -1,0 +1,20 @@
+1. Create docker volume to storage file student_age.json
+   docker volume create data
+   cp student_age.age /var/lib/docker/volumes/data/
+
+2. Use this commande if you create your image and container via Dockerfile
+   docker run -it --name api -v /var/lib/docker/volumes/data/:/data -d api:v1.0 ( if you use Dockerfile only)
+3. Create a tag of image api-pozos and deploy in your docker hub ( optional)
+   docker tag api_pozos:v1.0 coulibalytech/pozos-api:v1.0
+   docker push coulibalytech/pozos-api:v1.0
+4. Deployment Docker registry
+   4.1 Create a docker network to connect docker registry
+       docker network create registry_network
+       docker network inspect registry_network ( to check network)
+   4.2 Deployment the backend container docker registry ( Don't forget to stop the container use the port's 5000 ( backend studentlist)
+       docker run -d -p 5000:5000 --net registry_network --name registre-pozos registry:2.8.1
+   4.3 Deployment the frontend container docker registry
+       docker run -d -p 8090:80 --net registry_network -e NGINX_PROXY_PASS_URL=http://registre-pozos:5000 -e DELETE_IMAGES=true -e REGISTRY_TITLE=pozos --name frontend-pozos joxit/docker-registry-ui:2
+
+
+
