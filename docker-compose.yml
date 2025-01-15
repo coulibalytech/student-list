@@ -1,0 +1,31 @@
+services:
+  api:
+    image: coulibalytech/pozos-api:v1.0
+    ports:
+      - 5000:5000
+    volumes:
+      - /var/lib/docker/volumes/data:/data
+    networks:
+      - pozos_network
+
+  website:
+    image: php:8.1-apache
+    ports:
+       - 8585:80
+    environment:
+      - USERNAME=toto
+      - PASSWORD=python
+    volumes:
+      - ./website:/var/www/html
+    depends_on:
+       - api
+    networks:
+      - pozos_network
+
+
+volumes:
+ data:
+ website:
+
+networks:
+ pozos_network:
