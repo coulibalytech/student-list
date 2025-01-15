@@ -2,8 +2,8 @@
 This repo is :
  - Simple application to list student with a webserver (PHP) and API (Flask)
  - A Docker registry to manage docker image
-![project](https://github.com/coulibalytech/student-list/blob/main/Studentlist-Checking-pozos.png)
-![project](https://github.com/coulibalytech/student-list/blob/main/Docker-registry-pozos.png)
+![project](https://github.com/coulibalytech/student-list/blob/master/Docker-registry-pozos.png)
+![project](https://github.com/coulibalytech/student-list/blob/master/Studentlist-Checking-pozos.png)
 
 
 ------------
